@@ -7,10 +7,14 @@ public class EnemyAi : MonoBehaviour
     public float enemySpeed = 5f;
     [SerializeField] Transform player;
     [SerializeField] float damage = 5f;
+    [SerializeField] private HealthBar health;
+    EnemySpawner spawner;
 
     void Start()
     {
-         player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
+        health = FindObjectOfType<HealthBar>();
+        spawner = FindObjectOfType<EnemySpawner>();
     }
 
     void Update()
@@ -22,7 +26,9 @@ public class EnemyAi : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Hit the Player");
+            Destroy(this.gameObject);
+            spawner.waves[spawner.currentWave].enemiesCount--;
+            health.TakeDamage(10);
         }
     }
 }
