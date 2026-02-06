@@ -73,7 +73,6 @@ public class Shooting : MonoBehaviour
         }
 
         UpdateUI();
-        
     }
 
     void Shoot()
@@ -101,7 +100,6 @@ public class Shooting : MonoBehaviour
             Debug.Log("Out of Ammo");
         }
     }
-
 
     void UpdateUI()
     {
