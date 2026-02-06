@@ -21,14 +21,12 @@ public class ObjectPooler : MonoBehaviour
         foreach(ObjectPool pool in pools)
         {
             Queue<GameObject> queue = new Queue<GameObject>();
-
             for(int i = 0;i< pool.objectCount; i++)
             {
                 GameObject obj = Instantiate(pool.objectPrefab);
                 obj.SetActive(false);
                 queue.Enqueue(obj);
             }
-
             poolDictionary.Add(pool.objectTag, queue);
         }
     }

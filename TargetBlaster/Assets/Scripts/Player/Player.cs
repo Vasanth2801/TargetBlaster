@@ -3,10 +3,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [Header("Player Movement")]
-    [SerializeField] private float speed = 5f;
+    [SerializeField] float speed = 5f;
 
     [Header("References")]
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb;
     PlayerController controller;
     [SerializeField] Camera cam;
 
