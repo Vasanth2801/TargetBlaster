@@ -8,9 +8,11 @@ public class Player : MonoBehaviour
     [Header("References")]
     [SerializeField] private Rigidbody2D rb;
     PlayerController controller;
+    [SerializeField] Camera cam;
 
     [Header("Inputs")]
     Vector2 moveInput;
+    Vector2 mousePos;
 
     void Awake()
     {
@@ -34,14 +36,27 @@ public class Player : MonoBehaviour
         controller.Player.Disable();
     }
 
+    void Update()
+    {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+    }
+
     void FixedUpdate()
     {
         Move();
+        MouseLook();
     }
 
     void Move()
     {
         Vector2 move = (rb.position + moveInput * speed * Time.deltaTime);
         rb.MovePosition(move);
+    }
+
+    void MouseLook()
+    {
+        Vector2 lookDir = mousePos - rb.position;
+        float angle = Mathf.Atan2(lookDir.y,lookDir.x)*Mathf.Rad2Deg-90f;
+        rb.rotation = angle;
     }
 }
