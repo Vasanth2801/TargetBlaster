@@ -19,6 +19,9 @@ public class EnemySpawner : MonoBehaviour
     public int currentWave = 0;
     private bool countdownBegin = false;
 
+    [Header("GameWinPAnel")]
+    [SerializeField] GameObject winPanel;
+
     void Start()
     {
         countdownBegin = true;
@@ -66,6 +69,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(waves[currentWave].timeBetweenSpawns);
             }
             Debug.Log("Wave Spawned");
+            winPanel.SetActive(true);
         }
     }
 }
